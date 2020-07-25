@@ -1,7 +1,7 @@
 # Random-Fractal-Tree
 Simple recursive fractal tree algorithm just for you.
 
-[![webpage example](https://raw.githubusercontent.com/CatalaHD/Word-Search-Generator/master/examples/myTree.png)](https://catalahd.github.io/Random-Fractal-Tree/)
+[![example](https://raw.githubusercontent.com/CatalaHD/Random-Fractal-Tree/master/examples/myTree.png)](https://catalahd.github.io/Random-Fractal-Tree/)
 
 ## Editing
 
