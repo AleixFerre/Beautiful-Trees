@@ -1,7 +1,16 @@
 # Random-Fractal-Tree
 Simple recursive fractal tree algorithm just for you.
 
-[![example](https://raw.githubusercontent.com/CatalaHD/Random-Fractal-Tree/master/examples/myTree.png)](https://catalahd.github.io/Random-Fractal-Tree/)
+## Different types of trees
+
+### Random trees
+
+[![example1](https://raw.githubusercontent.com/CatalaHD/Random-Fractal-Tree/master/examples/myTree.png)](https://catalahd.github.io/Random-Fractal-Tree/)
+
+### Fractal trees
+
+[![example1](https://raw.githubusercontent.com/CatalaHD/Random-Fractal-Tree/master/examples/myTree2.png)](https://catalahd.github.io/Random-Fractal-Tree/)
+
 
 ## Editing
 

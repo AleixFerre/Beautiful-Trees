@@ -5,7 +5,8 @@
 let steps = 10; // The steps that the recursion will execute
 let angle = 45; // Max random angle in angles
 let distance = 200; // Branch distance
-let branches = 2; // Num of branches that each one will have
+let branches = 3; // Num of branches that each one will have
+let enableRandom = false; // Is the tree actually random?
 
 let c; // The actual canvas
 let slider_angle; // The angle slider
@@ -15,6 +16,7 @@ let slider_steps; // The steps slider
 let slider_branches; // The branches slider
 let button_seed; // The seed button
 let button_save; // The save button
+let random_checkbox; // The enable randomness checkbox
 
 function setup() {
 
@@ -33,15 +35,17 @@ function setup() {
   slider_distance = createSlider(0.0, distance, distance, 0.01);
   slider_distance.input(generate);
 
-  createDiv('Steps:');
-  slider_steps = createSlider(0, steps, steps / 2, 1);
+  createDiv('Steps: [! WARNING, DON\'T GO TOO HIGH ]');
+  slider_steps = createSlider(0, 10, steps / 2, 1);
   slider_steps.input(generate);
 
-  createDiv('Branches:');
-  slider_branches = createSlider(1, 5, branches, 1);
+  createDiv('Branches: [! WARNING, DON\'T GO TOO HIGH ]');
+  slider_branches = createSlider(1, 10, branches, 1);
   slider_branches.input(generate);
 
-  createSpan('<br>');
+  random_checkbox = createCheckbox('Enable Randomness', enableRandom);
+  random_checkbox.changed(setRandom);
+
   button_seed = createButton("Generate");
   button_seed.mouseClicked(generate);
   button_save = createButton("Save");
@@ -52,7 +56,6 @@ function setup() {
 }
 
 function generate() {
-
   background(225);
 
   angle = slider_angle.value();
@@ -76,7 +79,6 @@ function save_canvas() {
 }
 
 function drawLines(i) {
-
   if (i > steps)
     return;
 
@@ -86,12 +88,19 @@ function drawLines(i) {
 
   for (let j = 0; j < branches; j++) {
     push();
-    rotate(random(-angle, angle));
+    if (enableRandom) {
+      rotate(random(-angle, angle));
+    } else {
+      rotate(map(j, 0, branches, -angle, angle));
+    }
     line(0, 0, 0, -localDist);
     translate(0, -localDist);
     drawLines(i + 1);
     pop();
   }
+}
 
-
+function setRandom() {
+  enableRandom = this.checked();
+  generate();
 }
