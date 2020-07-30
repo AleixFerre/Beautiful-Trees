@@ -6,7 +6,9 @@ let steps = 10; // The steps that the recursion will execute
 let angle = 45; // Max random angle in angles
 let distance = 200; // Branch distance
 let branches = 3; // Num of branches that each one will have
-let enableRandom = false; // Is the tree actually random?
+let enableRandom = false; // Is the tree random?
+let enableNoise = false; // Is the noise enabled?
+let xoff = 0.0; // Noise Xoffset
 
 let c; // The actual canvas
 let slider_angle; // The angle slider
@@ -17,6 +19,8 @@ let slider_branches; // The branches slider
 let button_seed; // The seed button
 let button_save; // The save button
 let random_checkbox; // The enable randomness checkbox
+let noise_checkbox; // The enable noise checkbox
+let slider_noise; // The noise Xoffset slider
 
 function setup() {
 
@@ -43,9 +47,17 @@ function setup() {
   slider_branches = createSlider(1, 10, branches, 1);
   slider_branches.input(generate);
 
-  random_checkbox = createCheckbox('Enable Randomness', enableRandom);
-  random_checkbox.changed(setRandom);
-
+  random_checkbox = createCheckbox('Enable Randomness (full random)', enableRandom);
+  random_checkbox.changed(setRandom); 
+  
+  noise_checkbox = createCheckbox('Enable Noise (smooth random, require Randomness enabled)', enableNoise);
+  noise_checkbox.changed(setNoise);
+  
+  createDiv('Noise Offset:');
+  slider_noise = createSlider(1, 10, 5, 0.01);
+  slider_noise.input(generate);
+  
+  createDiv("<br>");
   button_seed = createButton("Generate");
   button_seed.mouseClicked(generate);
   button_save = createButton("Save");
@@ -62,6 +74,7 @@ function generate() {
   steps = slider_steps.value();
   distance = slider_distance.value();
   branches = slider_branches.value();
+  xoff = slider_noise.value();
 
   let initHeight = slider_height.value();
 
@@ -89,7 +102,11 @@ function drawLines(i) {
   for (let j = 0; j < branches; j++) {
     push();
     if (enableRandom) {
-      rotate(random(-angle, angle));
+      if (enableNoise) {
+        rotate(map(noise(xoff, j, i), 0, 1, -angle, angle));
+      } else {
+        rotate(random(-angle, angle));
+      }
     } else {
       rotate(map(j, 0, branches, -angle, angle));
     }
@@ -102,5 +119,10 @@ function drawLines(i) {
 
 function setRandom() {
   enableRandom = this.checked();
+  generate();
+}
+
+function setNoise() {
+  enableNoise = this.checked();
   generate();
 }
