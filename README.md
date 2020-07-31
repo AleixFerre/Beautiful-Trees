@@ -5,11 +5,11 @@ Simple recursive fractal tree algorithm just for you.
 
 ### Random trees
 
-[![example1](https://raw.githubusercontent.com/CatalaHD/Random-Fractal-Tree/master/examples/myTree.png)](catalahd.github.io/beautiful-trees/)
+[![example1](https://raw.githubusercontent.com/CatalaHD/Random-Fractal-Tree/master/examples/myTree.png)](https://catalahd.github.io/Beautiful-Trees/)
 
 ### Fractal trees
 
-[![example1](https://raw.githubusercontent.com/CatalaHD/Random-Fractal-Tree/master/examples/myTree2.png)](catalahd.github.io/beautiful-trees/)
+[![example1](https://raw.githubusercontent.com/CatalaHD/Random-Fractal-Tree/master/examples/myTree2.png)](https://catalahd.github.io/Beautiful-Trees/)
 
 
 ## Editing
